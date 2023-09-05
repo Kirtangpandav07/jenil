@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mongus</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="/add" method="post">
+      <input type="hidden" name="updateid" value="<%= eid %>">
+      <label for="">Name</label><input type="text" name="Name" value="<%= values.Name %>">
+      <br>
+      <label for="">Maths</label><input type="text" name="Maths" value="<%= values.Maths %>">
+      <br>
+      <label for="">Science</label><input type="text" name="Science" value="<%= values.Science %>">
+      <br>
+      <label for="">English</label><input type="text" name="English" value="<%= values.English %>">
+      <br>
+      <label for="">Hindi</label><input type="text" name="Hindi" value="<%= values.Hindi %>">
+      <br>
+      <label for="">Gujrati</label><input type="text" name="Gujrati" value="<%= values.Gujrati %>">
+      <button>Submit</button>
+    </form>
+    <table style="color: orange;" bgcolor="black" align="center" border="1" bordercolor="white">
+
+      <tr align="center" border="1">
+        <th width="100px">Roll no</th>
+        <th width="100px">Name</th>
+        <th width="100px">Maths</th>
+        <th width="100px">Science</th>
+        <th width="100px">English</th>
+        <th width="100px">Hindi</th>
+        <th width="100px">Gujrati</th>
+        <th width="100px">Total</th>
+        <th width="100px">Per</th>
+        <th width="100px">Detail</th>
+        
+        <th width="100px">Edit</th>
+        <th width="100px">Delete</th>
+
+      </tr>
+
+
+      <% for(let i=0; i< data.length ; i++) {%>
+        <%let total = parseInt(data[i].Maths) + parseInt(data[i].Science) + parseInt(data[i].English) + parseInt(data[i].Hindi) + parseInt(data[i].Gujrati) %>
+          <%let per = total/5 %>
+            <tr align="center">
+              <td>
+                <%= i + 1 %>
+              </td>
+              <td>
+                <%= data[i].Name %>
+              </td>
+              <td>
+                <%= data[i].Maths %>
+              </td>
+              <td>
+                <%= data[i].Science %>
+              </td>
+              <td>
+                <%= data[i].English %>
+              </td>
+              <td>
+                <%= data[i].Hindi %>
+              </td>
+              <td>
+                <%= data[i].Gujrati %>
+              </td>
+              <td>
+                <%= total %>
+              </td>
+              <td>
+                <%= per %>
+              </td>
+              <td><a href="/detail?no=<%= i %>">detail</a></td>
+              
+              <td><a href="/?editid=<%= data[i]._id  %>">Edit</a></td>
+              <td><a href="/?deleteid=<%= data[i]._id  %>">Delete</a></td>
+
+
+              
+            </tr>
+            <% } %>
+  </table>
+
+  </body>
+</html>
